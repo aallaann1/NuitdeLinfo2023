@@ -10,7 +10,7 @@ $loader->addNamespace('App', __DIR__ . '/../src');
 
 
 
-$controleurParDefaut = 'chaussure';
+$controleurParDefaut = 'arbre';
 
 
 $controleurAffichage = 'App\Controller\Controleur' . ucfirst($controleurParDefaut);
