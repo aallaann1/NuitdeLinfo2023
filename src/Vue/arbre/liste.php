@@ -1,8 +1,8 @@
 <div class="landing">
     <div class="search">
         <p class="trouver-une-annonce">
-            <span class="span">Trouver une </span>
-            <span class="text-wrapper-2">godasse</span>
+            <span class="span">Trouver un</span>
+            <span class="text-wrapper-2">arbre</span>
             <span class="span"> à vos pieds </span>
             <span class="span"> !</span>
         </p>
@@ -15,10 +15,10 @@
 
         <?php
 
-        /** @var  array $chaussures */
+        /** @var  array $arbres */
         $ligneActuelle = 0;
-        $modulo = sizeof($chaussures)%3;
-        $nbLigne = intdiv(sizeof($chaussures),3);
+        $modulo = sizeof($arbres)%3;
+        $nbLigne = intdiv(sizeof($arbres),3);
         if ($nbLigne>0 && $modulo==0){
             $nbLigne--;
         }
@@ -27,31 +27,30 @@
         $autorise = 2;
 
 
-        foreach ($chaussures as $chaussure) {
+        foreach ($arbres as $arbre) {
 
 
-            $nomHtml = htmlspecialchars($chaussure->getNom());
-            $descriptionHtml = htmlspecialchars($chaussure->getDescription());
-            $image = $chaussure->getPhoto();
-            $prixHtml = htmlspecialchars($chaussure->getPrix());
-            $link = urldecode("?action=afficherDetail&idChaussure=".$chaussure->getIdChaussure());
-            $lienModifier = urldecode("?action=afficherFormulaireMiseAJour&controleur=chaussure&idChaussure=".$chaussure->getIdChaussure());
-            $lienSupprimer = urldecode("?action=supprimer&controleur=chaussure&idChaussure=".$chaussure->getIdChaussure());
-            $urlDuPanier = urldecode("?action=ajouterAuPanier&controleur=panier&idChaussure=".$chaussure->getIdChaussure());
+            $nomHtml = htmlspecialchars($arbre->getNomcommun());
+            $descriptionHtml = htmlspecialchars($arbre->getDescription());
+            $image = $arbre->getImage();
+            $link = urldecode("?action=afficherDetail&idChaussure=".$arbre->getIdArbre());
+            $lienModifier = urldecode("?action=afficherFormulaireMiseAJour&controleur=chaussure&idChaussure=".$arbre->getIdArbre());
+            $lienSupprimer = urldecode("?action=supprimer&controleur=chaussure&idChaussure=".$arbre->getIdArbre());
+            $urlDuPanier = urldecode("?action=ajouterAuPanier&controleur=panier&idChaussure=".$arbre->getIdArbre());
 
             if ($modulo==0){
-                $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$prixHtml,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
+                $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
             }else if ($modulo==1){
                 if ($indice==$nbLigne){
-                    $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$prixHtml,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
+                    $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
                     $nbLigne--;
                 }else{
-                    $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$prixHtml,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
+                    $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
                     $indice++;
                 }
             }else{
                 if ($indice==$nbLigne){
-                    $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$prixHtml,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
+                    $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
                     $autorise--;
                     if ($autorise==0) {
                         $nbLigne--;
@@ -60,7 +59,7 @@
                         $indice=0;
                     }
                 }else{
-                    $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$prixHtml,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
+                    $ligneActuelle=afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$link,$lienModifier,$lienSupprimer,$urlDuPanier);
                     $indice++;
                 }
             }
@@ -72,11 +71,11 @@
 
 
 
-        function afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$prixHtml,$link,$lienModifier,$lienSupprimer,$lienPanier) : int
+        function afficherEnFonctionModulo($modulo,$image,$descriptionHtml,$nomHtml,$ligneActuelle,$nbLigne,$link,$lienModifier,$lienSupprimer,$lienPanier) : int
         {
             if ($nbLigne==0){
                 echo "<div class='frame-2'>";
-                affichageAnnonce($nomHtml,$descriptionHtml,$image,$prixHtml,$link,$lienModifier,$lienSupprimer,$lienPanier);
+                affichageAnnonce($nomHtml,$descriptionHtml,$image,$link,$lienModifier,$lienSupprimer,$lienPanier);
                 echo"</div>";
                 return 0;
             }
@@ -86,7 +85,7 @@
                     echo "<div class='frame-2'>";
                 }
 
-                affichageAnnonce($nomHtml,$descriptionHtml,$image,$prixHtml,$link,$lienModifier,$lienSupprimer,$lienPanier);
+                affichageAnnonce($nomHtml,$descriptionHtml,$image,$link,$lienModifier,$lienSupprimer,$lienPanier);
 
                 if ($ligneActuelle==$nbLigne){
                     echo"</div>";
@@ -101,7 +100,7 @@
                     echo "<div class='frame-2'>";
                 }
 
-                affichageAnnonce($nomHtml,$descriptionHtml,$image,$prixHtml,$link,$lienModifier,$lienSupprimer,$lienPanier);
+                affichageAnnonce($nomHtml,$descriptionHtml,$image,$link,$lienModifier,$lienSupprimer,$lienPanier);
 
                 if ($ligneActuelle==$nbLigne){
                     echo"</div>";
@@ -115,14 +114,13 @@
         }
 
 
-        function affichageAnnonce($nomHtml, $descriptionHtml, $image,$prixHtml,$link,$lienModifier,$lienSupprimer,$lienPanier)
+        function affichageAnnonce($nomHtml, $descriptionHtml, $image,$link,$lienModifier,$lienSupprimer,$lienPanier)
         {
             echo "<div class='annonce'>
             <img class='rectangle' src='data:image/jpeg;base64," . base64_encode($image) . "' />
             <div class='frame-3'>
               <div class='frame-4'>
                 <div class='title'>
-                  <div class='price'><div class='text-wrapper-4'>$prixHtml $</div></div>
                   <div class='porsche'>$nomHtml</div>";
 
             if (\App\Lib\ConnexionUtilisateur::estAdministrateur()){
@@ -145,7 +143,7 @@
         }
 
 
-        /** @var array $voitures */
+        /** @var array $arbres */
 
 
         ?>
