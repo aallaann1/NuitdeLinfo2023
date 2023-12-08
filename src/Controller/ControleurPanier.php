@@ -38,7 +38,7 @@ class ControleurPanier extends ControleurGenerique
                     (new PanierRepository())->sauvegarder($newPanier);
 
                     MessageFlash::ajouter('success', 'Arbre ajouté au panier');
-                    $url = "?action=afficherListe&controleur=chaussure";
+                    $url = "?action=afficherListe&controleur=arbre";
                     ControleurPanier::redirectionVersURL($url);
                 } catch (\Exception $e) {
                     MessageFlash::ajouter('danger', 'Arbre déjà dans le panier');
@@ -51,22 +51,22 @@ class ControleurPanier extends ControleurGenerique
             $session->enregistrer('panier', [$idArbre => $idArbre]);
 
 
-            if ($session->contient('listeChaussures')) {
-                $listeChaussuresEnSession = $session->lire('listeChaussures');
+            if ($session->contient('listeArbres')) {
+                $listeArbresEnSession = $session->lire('listeArbres');
 
-                if (!in_array($idArbre, $session->lire('listeChaussures'))) {
-                    $listeChaussuresEnSession[] = $idArbre;
-                    $_SESSION['listeChaussures'] = $listeChaussuresEnSession;
-                    MessageFlash::ajouter('success', 'Chaussure ajouté au panier');
-                    $url = "?action=afficherListe&controleur=chaussure";
+                if (!in_array($idArbre, $session->lire('listeArbres'))) {
+                    $listeArbresEnSession[] = $idArbre;
+                    $_SESSION['listeArbres'] = $listeArbresEnSession;
+                    MessageFlash::ajouter('success', 'Arbre ajouté au panier');
+                    $url = "?action=afficherListe&controleur=arbre";
                     ControleurPanier::redirectionVersURL($url);
                 } else {
-                    MessageFlash::ajouter('danger', 'Chaussure déjà dans le panier');
-                    $url = "?action=afficherListe&controleur=chaussure";
+                    MessageFlash::ajouter('danger', 'Arbre déjà dans le panier');
+                    $url = "?action=afficherListe&controleur=arbre";
                     ControleurPanier::redirectionVersURL($url);
                 }
             } else {
-                $session->enregistrer('listeChaussures', [$idChaussure]);
+                $session->enregistrer('listeArbres', [$idArbre]);
             }
 
 
@@ -78,17 +78,17 @@ class ControleurPanier extends ControleurGenerique
     {
         $session = Session::getInstance();
 
-        $idChaussure = $_GET['idChaussure'];
+        $idArbre = $_GET['idArbre'];
 
         if (ConnexionUtilisateur::estConnecte()) {
             $idUtilisateur = $_SESSION['utilisateur'];
-            (new PanierRepository())->supprimerPanier($idChaussure, $idUtilisateur);
+            (new PanierRepository())->supprimerPanier($idArbre, $idUtilisateur);
             MessageFlash::ajouter('success', 'Chaussure supprimé du panier');
             $url = "?action=afficherPanier&controleur=panier";
             ControleurPanier::redirectionVersURL($url);
         } else {
-            unset($_SESSION['listeChaussures'][array_search($idChaussure, $_SESSION['listeChaussures'])]);
-            MessageFlash::ajouter('success', 'Chaussure supprimé du panier');
+            unset($_SESSION['listeArbres'][array_search($idArbre, $_SESSION['listeArbres'])]);
+            MessageFlash::ajouter('success', 'Arbre supprimé du panier');
             $url = "?action=afficherPanier&controleur=panier";
             ControleurPanier::redirectionVersURL($url);
         }
@@ -102,21 +102,21 @@ class ControleurPanier extends ControleurGenerique
             $idUtilisateur = $_SESSION['utilisateur'];
             $paniers[] = (new PanierRepository())->recupererParClePrimaireArray($idUtilisateur);
 
-            $chaussures = [];
+            $arbres = [];
 
-            foreach ($paniers as $panierArray) {
+            foreach ($arbres as $panierArray) {
                 foreach ($panierArray as $panier) {
-                    $idChaussure = $panier->getIdChaussure();
+                    $idArbre = $panier->getArbre();
 
-                    if (!is_null($idChaussure)) {
-                        $chaussures[] = $idChaussure;
+                    if (!is_null($idArbre)) {
+                        $arbres[] = $idArbre;
                     }
                 }
             }
 
-            CommandeRepository::validerPanier($chaussures, $idUtilisateur);
+            CommandeRepository::validerPanier($arbres, $idUtilisateur);
 
-            foreach ($paniers as $panierArray) {
+            foreach ($arbres as $panierArray) {
                 foreach ($panierArray as $panier) {
                     $idChaussure = $panier->getIdChaussure();
 
