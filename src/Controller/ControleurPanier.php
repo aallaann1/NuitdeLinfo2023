@@ -23,39 +23,39 @@ class ControleurPanier extends ControleurGenerique
     public static function ajouterAuPanier()
     {
         $session = Session::getInstance();
-        $idChaussure = $_GET['idChaussure'];
+        $idArbre = $_GET['idArbre'];
 
         if (ConnexionUtilisateur::estConnecte()) {
             if (isset($_SESSION['utilisateur'])) {
                 try {
                     $idUtilisateur = $_SESSION['utilisateur'];
                     $values = [
-                        "idChaussure" => $idChaussure,
+                        "idChaussure" => $idArbre,
                         "login" => $idUtilisateur
                     ];
 
                     $newPanier = Panier::construireDepuisTableau($values);
                     (new PanierRepository())->sauvegarder($newPanier);
 
-                    MessageFlash::ajouter('success', 'Chaussure ajouté au panier');
+                    MessageFlash::ajouter('success', 'Arbre ajouté au panier');
                     $url = "?action=afficherListe&controleur=chaussure";
                     ControleurPanier::redirectionVersURL($url);
                 } catch (\Exception $e) {
-                    MessageFlash::ajouter('danger', 'Chaussure déjà dans le panier');
+                    MessageFlash::ajouter('danger', 'Arbre déjà dans le panier');
                     $url = "?action=afficherListe&controleur=chaussure";
                     ControleurPanier::redirectionVersURL($url);
                 }
             }
         } else {
 
-            $session->enregistrer('panier', [$idChaussure => $idChaussure]);
+            $session->enregistrer('panier', [$idArbre => $idArbre]);
 
 
             if ($session->contient('listeChaussures')) {
                 $listeChaussuresEnSession = $session->lire('listeChaussures');
 
-                if (!in_array($idChaussure, $session->lire('listeChaussures'))) {
-                    $listeChaussuresEnSession[] = $idChaussure;
+                if (!in_array($idArbre, $session->lire('listeChaussures'))) {
+                    $listeChaussuresEnSession[] = $idArbre;
                     $_SESSION['listeChaussures'] = $listeChaussuresEnSession;
                     MessageFlash::ajouter('success', 'Chaussure ajouté au panier');
                     $url = "?action=afficherListe&controleur=chaussure";
