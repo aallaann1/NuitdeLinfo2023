@@ -9,7 +9,7 @@
         </p>
         <p>
             <label for="nomcommun">Nom commun : </label>
-            <input type="text" name="nomcommun" id="nomcommun" required />
+            <input type="text" name="nomCommun" id="nomcommun" required />
         </p>
         <p>
             <label for="image">Image : </label>
