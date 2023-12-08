@@ -40,7 +40,7 @@ class PanierRepository extends AbstractRepository
     }
 
     public function supprimerPanier($idArbre, $login){
-        $sql = "DELETE FROM panier WHERE login= :login and idArbre= :$*idArbre";
+        $sql = "DELETE FROM panier WHERE login= :login and idArbre= :idArbre";
         $array = [
             "login" => $login,
             "idArbre" => $idArbre
