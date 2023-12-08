@@ -67,7 +67,7 @@ if (ConnexionUtilisateur::estConnecte()) {
                 <td><?= $arbre->getNomCommun() ?></td>
                 <td><?= $arbre->getDescription() ?></td>
                 <td>
-                    <a href="controleurFrontal.php?action=ajouterAuPanier&controleur=panier&idChaussure=<?= $arbre->getIdArbre() ?>">Ajout au panier</a>
+                    <a href="controleurFrontal.php?action=supprimer&controleur=panier&idArbre=<?= $arbre->getIdArbre() ?>">supprimer</a>
                 </td>
             </tr>
         <?php endforeach; ?>
