@@ -16,7 +16,7 @@
         <?php
 
         /** @var  array $arbres */
-        $arbres[] = (new \App\Modele\Repository\ArbreRepository())->recuperer();
+        $arbres = (new \App\Modele\Repository\ArbreRepository())->recuperer();
         $ligneActuelle = 0;
         $modulo = sizeof($arbres)%3;
         $nbLigne = intdiv(sizeof($arbres),3);
