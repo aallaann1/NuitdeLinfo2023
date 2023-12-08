@@ -37,9 +37,9 @@ class Commande extends AbstractDataObject
     }
 
 
-    public function getChaussure(): Chaussure
+    public function getChaussure(): Arbre
     {
-        return Chaussure::getChaussure($this->idChaussure);
+        return Arbre::get($this->idChaussure);
     }
 
     public function getLogin(): string

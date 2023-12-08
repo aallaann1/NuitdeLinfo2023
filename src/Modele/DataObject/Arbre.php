@@ -123,7 +123,6 @@ class Arbre extends AbstractDataObject
             "description" => $this->description
         );
     }
-
 }
 
 ?>

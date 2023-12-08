@@ -5,7 +5,7 @@
 <?php
 
 use App\Controller\ControleurPanier;
-use App\Modele\Repository\ChaussureRepository;
+use App\Modele\Repository\ArbreRepository;
 use App\Lib\ConnexionUtilisateur;
 use App\Modele\Repository\PanierRepository;
 use App\Modele\DataObject\Panier;
