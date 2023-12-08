@@ -30,7 +30,7 @@ class ControleurPanier extends ControleurGenerique
                 try {
                     $idUtilisateur = $_SESSION['utilisateur'];
                     $values = [
-                        "idChaussure" => $idArbre,
+                        "idArbre" => $idArbre,
                         "login" => $idUtilisateur
                     ];
 
@@ -42,7 +42,7 @@ class ControleurPanier extends ControleurGenerique
                     ControleurPanier::redirectionVersURL($url);
                 } catch (\Exception $e) {
                     MessageFlash::ajouter('danger', 'Arbre déjà dans le panier');
-                    $url = "?action=afficherListe&controleur=chaussure";
+                    $url = "?action=afficherListe&controleur=arbre";
                     ControleurPanier::redirectionVersURL($url);
                 }
             }
@@ -109,21 +109,19 @@ class ControleurPanier extends ControleurGenerique
                     $idArbre = $panier->getArbre();
 
                     if (!is_null($idArbre)) {
-                        $arbres[] = $idArbre;
+                        $arbres = $idArbre;
                     }
                 }
             }
 
             CommandeRepository::validerPanier($arbres, $idUtilisateur);
 
-            foreach ($arbres as $panierArray) {
-                foreach ($panierArray as $panier) {
-                    $idChaussure = $panier->getIdChaussure();
+            foreach ($arbres as $arbre) {
+                    $idArbre = $arbre->getArbre();
 
-                    if (!is_null($idChaussure)) {
-                        (new PanierRepository())->supprimerPanier($idChaussure, $idUtilisateur);
+                    if (!is_null($idArbre)) {
+                        (new PanierRepository())->supprimerPanier($idArbre, $idUtilisateur);
                     }
-                }
             }
 
             MessageFlash::ajouter('success', 'Votre panier a été validé');

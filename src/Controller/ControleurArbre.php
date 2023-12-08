@@ -75,7 +75,7 @@ class ControleurArbre extends ControleurGenerique
             $url = "?action=afficherListe&controleur=arbre";
             ControleurArbre::redirectionVersURL($url);
         } else {
-            $arbre = new Arbre(null, $_REQUEST['nomScientifique'], $_REQUEST['nomcommun'], $_REQUEST['image'], $_REQUEST['description']);
+            $arbre = new Arbre(null, $_REQUEST['nomScientifique'], $_REQUEST['nomCommun'], $_REQUEST['image'], $_REQUEST['description']);
             (new ArbreRepository())->creer($arbre);
             MessageFlash::ajouter('info', "arbre créé");
             $url = "?action=afficherListe&controleur=arbre";
@@ -116,7 +116,7 @@ class ControleurArbre extends ControleurGenerique
                 ControleurArbre::afficherVue('vueGenerale.php', ["pagetitle" => "Erreur", "cheminVueBody" => "arbre/erreur.php", "messageErreur" => $messageErreur]);
             } else {
                 $arbre->setNomScientifique($_REQUEST['nomScientifique']);
-                $arbre->setNomcommun($_REQUEST['nomcommun']);
+                $arbre->setNomcommun($_REQUEST['nomCommun']);
                 $arbre->setImage($_REQUEST['image']);
                 $arbre->setDescription($_REQUEST['description']);
                 (new ArbreRepository())->mettreAJour($arbre);

@@ -12,7 +12,7 @@ class ControleurCommande extends ControleurGenerique
     public static function afficherGestionCommande(){
         if (!ConnexionUtilisateur::estAdministrateur()) {
             MessageFlash::ajouter('warning', "vous n'avez pas les droit d'accés");
-            $url = "?action=afficherListe&controleur=chaussure";
+            $url = "?action=afficherListe&controleur=arbre";
             ControleurChaussure::redirectionVersURL($url);
         } else {
             ControleurChaussure::afficherVue('vueGenerale.php', ["pagetitle" => "gestion des commandes", "cheminVueBody" => "gestionCommande.php"]);
@@ -22,7 +22,7 @@ class ControleurCommande extends ControleurGenerique
     public static function afficherCommandes(){
         if (!ConnexionUtilisateur::estConnecte()) {
             MessageFlash::ajouter('warning', "vous n'avez pas les droit d'accés");
-            $url = "?action=afficherListe&controleur=chaussure";
+            $url = "?action=afficherListe&controleur=arbre";
             ControleurChaussure::redirectionVersURL($url);
         } else {
             ControleurChaussure::afficherVue('vueGenerale.php', ["pagetitle" => "mes commandes", "cheminVueBody" => "commande/mesCommandes.php"]);

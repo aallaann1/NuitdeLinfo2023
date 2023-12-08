@@ -19,10 +19,10 @@ class PanierRepository extends AbstractRepository
 
     protected function construireDepuisTableau(array $ligne): Panier
     {
-        $idChaussure = $ligne['idChaussure'];
+        $idArbre = $ligne['idArbre'];
         $login = $ligne['login'];
 
-        return new Panier($idChaussure, $login);
+        return new Panier($idArbre, $login);
     }
 
 
@@ -34,16 +34,16 @@ class PanierRepository extends AbstractRepository
     protected function getNomsColonnes(): array
     {
         return [
-            "idChaussure",
+            "idArbre",
             "login"
         ];
     }
 
-    public function supprimerPanier($idChaussure, $login){
-        $sql = "DELETE FROM panier WHERE login= :login and idChaussure= :idChaussure";
+    public function supprimerPanier($idArbre, $login){
+        $sql = "DELETE FROM panier WHERE login= :login and idArbre= :$*idArbre";
         $array = [
             "login" => $login,
-            "idChaussure" => $idChaussure
+            "idArbre" => $idArbre
         ];
         $pdoStatement = ConnexionBaseDeDonnee::getPdo()->prepare($sql);
         $pdoStatement->execute($array);

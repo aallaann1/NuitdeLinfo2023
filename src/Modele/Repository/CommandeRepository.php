@@ -19,11 +19,11 @@ class CommandeRepository extends AbstractRepository
 
     protected function construireDepuisTableau(array $ligne): Commande
     {
-        $idChaussure = $ligne['idChaussure'];
+        $idArbre = $ligne['idArbre'];
         $login = $ligne['login'];
         $date = $ligne['date'];
 
-        return new Commande($idChaussure, $login, $date);
+        return new Commande($idArbre, $login, $date);
     }
 
 
@@ -35,21 +35,21 @@ class CommandeRepository extends AbstractRepository
     protected function getNomsColonnes(): array
     {
         return [
-            "idChaussure",
+            "idArbre",
             "login",
             "date"
         ];
     }
 
     public static function validerPanier($arrayIdChaussure, $login) {
-        $sql = "INSERT INTO commande (idChaussure, login, date) VALUES (:idChaussure, :login, NOW())";
+        $sql = "INSERT INTO commande (idArbre, login, date) VALUES (:idArbre, :login, NOW())";
 
         $pdoStatement = ConnexionBaseDeDonnee::getPdo()->prepare($sql);
 
-        foreach ($arrayIdChaussure as $idChaussure) {
+        foreach ($arrayIdChaussure as $idArbre) {
             $array = [
                 "login" => $login,
-                "idChaussure" => $idChaussure
+                "idArbre" => $idArbre
             ];
 
             try {
