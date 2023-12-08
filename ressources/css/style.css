@@ -700,3 +700,75 @@
     margin-right: 5px;
     color: #333;
 }
+
+/* Styles généraux pour les écrans d'ordinateur */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+nav {
+    background-color: #eee;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+/* Média requête pour les écrans de taille moyenne (tablettes) */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    nav li {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+/* Média requête pour les petits écrans (téléphones) */
+@media only screen and (max-width: 480px) {
+    header {
+        font-size: 1.5em;
+    }
+
+    nav {
+        display: none;
+    }
+
+    nav.show {
+        display: block;
+        background-color: #eee;
+        padding: 10px;
+    }
+
+    nav.show ul {
+        text-align: center;
+    }
+
+    nav.show li {
+        display: block;
+        margin: 0;
+    }
+}
+
