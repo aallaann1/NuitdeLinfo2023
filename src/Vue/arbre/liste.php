@@ -35,7 +35,7 @@
                         <td><?= $arbre->getNomCommun() ?></td>
                         <td><?= $arbre->getDescription() ?></td>
                         <td>
-                            <a href="controleurFrontal.php?action=ajouterAuPanier&controleur=panier&idChaussure=<?= $arbre->getIdArbre() ?>">Ajout au panier</a>
+                            <a href="controleurFrontal.php?action=ajouterAuPanier&controleur=panier&idArbre=<?= $arbre->getIdArbre() ?>">Ajout au panier</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
