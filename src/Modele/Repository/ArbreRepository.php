@@ -40,4 +40,25 @@ class ArbreRepository extends AbstractRepository
         return ['idArbre','nomScientifique', 'nomCommun', 'image', 'description'];
     }
 
+    public function créer(string $nomScientifique, string $nomCommun, string $image, string $description): void
+    {
+        $sql = "INSERT INTO arbre (nomScientifique, nomCommun, image, description) VALUES (:nomScientifique, :nomCommun, :image, :description)";
+
+        $pdoStatement = ConnexionBaseDeDonnee::getPdo()->prepare($sql);
+
+        $array = [
+            "nomScientifique" => $nomScientifique,
+            "nomCommun" => $nomCommun,
+            "image" => $image,
+            "description" => $description
+        ];
+
+        try {
+            $pdoStatement->execute($array);
+        } catch (PDOException $e) {
+            MessageFlash::ajouter('error', 'Erreur lors de l\'insertion dans la table arbre.');
+            error_log($e->getMessage());
+        }
+    }
+
 }
