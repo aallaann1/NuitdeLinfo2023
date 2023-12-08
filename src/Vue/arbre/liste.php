@@ -32,7 +32,7 @@
                 <?php foreach ($arbres as $arbre) : ?>
                     <tr>
                         <td><img src="<?= $arbre->getImage() ?>" alt="Arbre Image" width=50px height=50px></td>
-                        <td><?= $arbre->getNomcommun() ?></td>
+                        <td><?= $arbre->getNomCommun() ?></td>
                         <td><?= $arbre->getDescription() ?></td>
                         <td>
                             <a href="controleurFrontal.php?action=ajouterAuPanier&controleur=panier&idChaussure=<?= $arbre->getIdArbre() ?>">Ajout au panier</a>
