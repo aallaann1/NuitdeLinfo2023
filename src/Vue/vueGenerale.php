@@ -70,7 +70,7 @@
 <main>
     <?php
     /** @var TYPE_NAME $cheminVueBody */
-    require __DIR__ . "/vueGenerale.php";
+    require __DIR__ .  "/{$cheminVueBody}";
     ?>
 </main>
 
