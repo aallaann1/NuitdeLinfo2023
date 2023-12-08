@@ -5,7 +5,7 @@
 <?php
 
 use App\Controller\ControleurPanier;
-use App\Modele\Repository\ChaussureRepository;
+use App\Modele\Repository\ArbreRepository;
 use App\Lib\ConnexionUtilisateur;
 use App\Modele\Repository\PanierRepository;
 use App\Modele\DataObject\Panier;
@@ -13,21 +13,19 @@ use App\Modele\DataObject\Panier;
 if (ConnexionUtilisateur::estConnecte()) {
     $idUtilisateur = $_SESSION['utilisateur'];
 
-    $paniers[] = (new PanierRepository())->recupererParClePrimaireArray($idUtilisateur);
+    $paniers = (new PanierRepository())->recupererParClePrimaireArray($idUtilisateur);
 
     if (sizeof($paniers) == 0) {
         echo "<p>Votre panier est vide.</p>";
     }
 
-    $chaussures = [];
+    $arbres = [];
 
     foreach ($paniers as $panierArray) {
-        foreach ($panierArray as $panier) {
-            $idChaussure = $panier->getIdChaussure();
+            $idArbre = $panierArray->getIdArbre();
 
-            if (!is_null($idChaussure)) {
-                $chaussures[] = (new ChaussureRepository())->recupererParClePrimaire($idChaussure);
-            }
+            if (!is_null($idArbre)) {
+                $arbres[] = (new ArbreRepository())->recupererParClePrimaire($idArbre);
         }
     }
 
@@ -35,11 +33,11 @@ if (ConnexionUtilisateur::estConnecte()) {
 } else if (!ConnexionUtilisateur::estConnecte()) {
 
     if (isset($_SESSION['panier'])) {
-        $listeChaussuresEnSession = isset($_SESSION['listeChaussures']) ? $_SESSION['listeChaussures'] : [];
-        $chaussures = [];
-        foreach ($listeChaussuresEnSession as $idChaussure) {
-            if (!is_null($idChaussure)) {
-                $chaussures[] = (new ChaussureRepository())->recupererParClePrimaire($idChaussure);
+        $listeArbresEnSession = isset($_SESSION['listeArbres']) ? $_SESSION['listeArbres'] : [];
+        $arbres = [];
+        foreach ($listeArbresEnSession as $idArbre) {
+            if (!is_null($idArbre)) {
+                $arbres[] = (new ArbreRepository())->recupererParClePrimaire($idArbre);
             }
         }
 
@@ -52,38 +50,27 @@ if (ConnexionUtilisateur::estConnecte()) {
 }
 ?>
 <div class="panier">
-    <?php if (isset($chaussures) && !empty($chaussures)) : ?>
-        <table>
-            <thead>
+    <?php if (isset($arbres) && !empty($arbres)) : ?>
+    <table>
+        <thead>
+        <tr>
+            <th>Photo</th>
+            <th>Nom arbre</th>
+            <th>Description</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php foreach ($arbres as $arbre) : ?>
             <tr>
-                <th>Nom Chaussure</th>
-                <th>Taille</th>
-                <th>Prix</th>
-                <th>Action</th>
+                <td><img src="<?= $arbre->getImage() ?>" alt="Arbre Image" width=50px height=50px></td>
+                <td><?= $arbre->getNomCommun() ?></td>
+                <td><?= $arbre->getDescription() ?></td>
+                <td>
+                    <a href="controleurFrontal.php?action=ajouterAuPanier&controleur=panier&idChaussure=<?= $arbre->getIdArbre() ?>">Ajout au panier</a>
+                </td>
             </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($chaussures as $chaussure) : ?>
-                <tr>
-                    <td><?= $chaussure->getNom() ?></td>
-                    <td><?= $chaussure->getTaille() ?></td>
-                    <td><?= $chaussure->getPrix() ?> €</td>
-                    <td>
-                        <a href="controleurFrontal.php?action=supprimer&controleur=panier&idChaussure=<?= $chaussure->getIdChaussure() ?>">Supprimer</a>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-
-            <?php
-            $nombresTotal = 0;
-            foreach ($chaussures as $chaussure) {
-                $nombresTotal += $chaussure->getPrix();
-            }
-            ?>
-            <tr>
-                <td colspan="2">Total</td>
-                <td colspan="2"><?= $nombresTotal ?> €</td>
-            </tr>
+        <?php endforeach; ?>
             <tr>
                 <td colspan="4"><a href="controleurFrontal.php?action=validerPanier&controleur=panier">Valider</a></td>
             </tr>
