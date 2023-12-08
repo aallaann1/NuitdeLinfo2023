@@ -11,7 +11,7 @@ use PDOException;
 class Panier extends AbstractDataObject
 {
 
-    private int $idChaussure;
+    private int $idArbre;
     private string $login;
 
     public function __construct(int $idChaussure, string $login)

@@ -14,16 +14,16 @@ class Configuration {
         // A l'IUT, vous avez une BDD nommee comme votre login
         // Sur votre machine, vous devrez creer une BDD
         // cayraca@localhost
-        'database' => 'cayraca',
+        'database' => 'terriera',
         // À l'IUT, le port de MySQL est particulier : 3316
         // Ailleurs, on utilise le port par défaut : 3306
         'port' => '3316',
         // A l'IUT, c'est votre login
         // Sur votre machine, vous avez surement un compte 'root'
-        'login' => 'cayraca',
+        'login' => 'terriera',
         // A l'IUT, c'est le même mdp que PhpMyAdmin
         // Sur votre machine personelle, vous avez creez ce mdp a l'installation
-        'password' => 'qYhVj6wYbXH9'
+        'password' => 'apagnan'
     );
 
     static public function getLogin() : string {

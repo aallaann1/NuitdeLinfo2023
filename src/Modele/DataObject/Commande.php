@@ -11,7 +11,7 @@ use PDOException;
 class Commande extends AbstractDataObject
 {
 
-    private $idChaussure;
+    private $idArbre;
     private $login;
 
     private $date;
