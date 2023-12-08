@@ -37,7 +37,7 @@ class ArbreRepository extends AbstractRepository
 
     protected function getNomsColonnes(): array
     {
-        return ['idArbre','nomScientifique', 'nomcommun', 'image', 'description'];
+        return ['idArbre','nomScientifique', 'nomCommun', 'image', 'description'];
     }
 
 }

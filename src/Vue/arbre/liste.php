@@ -1,7 +1,5 @@
 <div class="formulaire">
     <div class="panierContainer">
-        <div class="trouver-une-annonce"><h2 class="span">Liste des articles dans votre panier :</h2></div>
-
         <?php
 
         use App\Controller\ControleurPanier;
