@@ -8,48 +8,59 @@
     <link href="../ressources/css/globals.css" rel="stylesheet">
 </head>
 <body>
-<div class="landing">
-    <header class="header">
+<div class="container">
+    <header>
+
         <div class="nav">
             <a href="controleurFrontal.php" style="color: white;">Arbre.org</a>
-        </div>
 
-        <div class="liens">
 
-        </div><?php
+        <?php
         use App\Lib\ConnexionUtilisateur;
 
+        echo '<nav>';
 
         // Vérifier si aucun utilisateur n'est pas connecté
         if (!ConnexionUtilisateur::estConnecte()) {
-            echo '<div class="div"><a href="controleurFrontal.php" style="color: white;">Trouver une annonce</a></div>';
-            echo '<div class="div"><a href="controleurFrontal.php?action=afficherFormulaireInscription&controleur=utilisateur"  style="color: white;" >Inscription</a></div>';
-            echo '<div class="div"> <a href="controleurFrontal.php?action=afficherFormulaireConnexion&controleur=utilisateur"  style="color: white;" >Connexion</a></div>';
+            echo '<li><a href="controleurFrontal.php" style="color: white;">Trouver une annonce</a></li>';
+            echo '<li><a href="controleurFrontal.php?action=afficherFormulaireInscription&controleur=utilisateur"  style="color: white;" >Inscription</a></li>';
+            echo '<li><a href="controleurFrontal.php?action=afficherFormulaireConnexion&controleur=utilisateur"  style="color: white;" >Connexion</a></li>';
         }
 
         // Vérifier si l'utilisateur est connecté
         if (ConnexionUtilisateur::estConnecte()) {
             $log = ConnexionUtilisateur::getLoginUtilisateurConnecte();
-            echo '<div class="div"><a href="controleurFrontal.php?action=afficherDetail&controleur=utilisateur&login=' . urlencode($log) . '"  style="color: white;" >mon compte</a></div>';
-            echo '<div class="div"><a href="controleurFrontal.php?action=deconnecter&controleur=utilisateur"  style="color: white;" >deconnexion</a></div>';
-            echo '<div class="div"><a href="controleurFrontal.php?action=afficherCommandes&controleur=commande"  style="color: white;" >mes commandes</a></div>';
+            echo '<li><a href="controleurFrontal.php?action=afficherDetail&controleur=utilisateur&login=' . urlencode($log) . '"  style="color: white;" >mon compte</a></li>';
+            echo '<li><a href="controleurFrontal.php?action=deconnecter&controleur=utilisateur"  style="color: white;" >deconnexion</a></li>';
+            echo '<li><a href="controleurFrontal.php?action=afficherCommandes&controleur=commande"  style="color: white;" >mes commandes</a></li>';
 
             //Vérifier si l'utilisateur est administrateur
             if (ConnexionUtilisateur::estAdministrateur()) {
-                echo '<div class="div"><a href="controleurFrontal.php?action=afficherFormulaireCreation&controleur=arbre"  style="color: white;" >Ajouter une annonce</a></div>';
-                echo '<div class="div"><a href="?action=afficherListe&controleur=utilisateur"  style="color: white;" >Afficher Utilisateurs</a></div>';
-                echo '<div class="div"><a href="?action=afficherGestionCommande&controleur=commande"  style="color: white;" >Gestion commande</a></div>';
+                echo '<li><a href="controleurFrontal.php?action=afficherFormulaireCreation&controleur=arbre"  style="color: white;" >Ajouter une annonce</a></li>';
+                echo '<li><a href="?action=afficherListe&controleur=utilisateur"  style="color: white;" >Afficher Utilisateurs</a></li>';
+                echo '<li><a href="?action=afficherGestionCommande&controleur=commande"  style="color: white;" >Gestion commande</a></li>';
             }else{
-                echo '<div class="div"><a href="controleurFrontal.php" style="color: white;">Trouver une annonce</a></div>';
+                echo '<li><a href="controleurFrontal.php" style="color: white;">Trouver une annonce</a>';
             }
 
         }
         ?>
 
         <div class="div">A propos</div>
-        <div class="div">
-            <a href="controleurFrontal.php?action=afficherPanier&controleur=panier"  style="color: white;" >Panier </a>
+            <li><a href="controleurFrontal.php?action=afficherPanier&controleur=panier"  style="color: white;" >Panier </a></li>
+
+            <div class="burger-menu" onclick="toggleMenu()">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
         </div>
+        </nav>
     </header>
 
     <?php

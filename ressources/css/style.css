@@ -701,7 +701,6 @@
     color: #333;
 }
 
-/* Styles généraux pour les écrans d'ordinateur */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -711,64 +710,70 @@ body {
 .container {
     width: 80%;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 header {
     background-color: #333;
     color: #fff;
-    padding: 10px;
+    padding: 10px 0;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
 }
 
 nav {
-    background-color: #eee;
+    float: right;
 }
 
-nav ul {
+.nav-links {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-nav li {
+.nav-links li {
     display: inline-block;
-    margin-right: 20px;
+    margin-left: 20px;
 }
 
-/* Média requête pour les écrans de taille moyenne (tablettes) */
+.burger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    background-color: #fff;
+    height: 3px;
+    width: 25px;
+    margin: 6px 0;
+}
+
+/* Média requête pour les petits écrans (téléphones) */
 @media only screen and (max-width: 768px) {
     .container {
         width: 90%;
     }
 
-    nav li {
-        display: block;
-        margin-bottom: 10px;
-    }
-}
-
-/* Média requête pour les petits écrans (téléphones) */
-@media only screen and (max-width: 480px) {
-    header {
-        font-size: 1.5em;
-    }
-
-    nav {
+    .nav-links {
         display: none;
-    }
-
-    nav.show {
-        display: block;
-        background-color: #eee;
-        padding: 10px;
-    }
-
-    nav.show ul {
         text-align: center;
     }
 
-    nav.show li {
+    .nav-links.show {
         display: block;
-        margin: 0;
+    }
+
+    .nav-links li {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .burger-menu {
+        display: flex;
     }
 }
 
