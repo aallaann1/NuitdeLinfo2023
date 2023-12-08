@@ -36,7 +36,7 @@
 
             //Vérifier si l'utilisateur est administrateur
             if (ConnexionUtilisateur::estAdministrateur()) {
-                echo '<div class="div"><a href="controleurFrontal.php?action=afficherFormulaireCreation&controleur=chaussure"  style="color: white;" >Ajouter une annonce</a></div>';
+                echo '<div class="div"><a href="controleurFrontal.php?action=afficherFormulaireCreation&controleur=arbre"  style="color: white;" >Ajouter une annonce</a></div>';
                 echo '<div class="div"><a href="?action=afficherListe&controleur=utilisateur"  style="color: white;" >Afficher Utilisateurs</a></div>';
                 echo '<div class="div"><a href="?action=afficherGestionCommande&controleur=commande"  style="color: white;" >Gestion commande</a></div>';
             }else{
