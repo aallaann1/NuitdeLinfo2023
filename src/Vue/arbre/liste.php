@@ -10,10 +10,10 @@
         use App\Modele\DataObject\Panier;
 
 
-            $arbres = (new PanierRepository())->recuperer();
+            $arbres = (new ArbreRepository())->recuperer();
 
             if (sizeof($arbres) == 0) {
-                echo "<p>Votre panier est vide.</p>";
+                echo "<p>Votre BDD est vide.</p>";
             }
 
         ?>
