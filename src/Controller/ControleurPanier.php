@@ -100,17 +100,15 @@ class ControleurPanier extends ControleurGenerique
 
 
             $idUtilisateur = $_SESSION['utilisateur'];
-            $paniers[] = (new PanierRepository())->recupererParClePrimaireArray($idUtilisateur);
+            $paniers = (new PanierRepository())->recupererParClePrimaireArray($idUtilisateur);
 
             $arbres = [];
 
-            foreach ($arbres as $panierArray) {
-                foreach ($panierArray as $panier) {
-                    $idArbre = $panier->getArbre();
+            foreach ($paniers as $panier) {
+                $idArbre = $panier->getArbre();
 
-                    if (!is_null($idArbre)) {
-                        $arbres = $idArbre;
-                    }
+                if (!is_null($idArbre)) {
+                    $arbres = $idArbre;
                 }
             }
 
