@@ -752,28 +752,3 @@ nav {
     margin: 6px 0;
 }
 
-/* Média requête pour les petits écrans (téléphones) */
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 90%;
-    }
-
-    .nav-links {
-        display: none;
-        text-align: center;
-    }
-
-    .nav-links.show {
-        display: block;
-    }
-
-    .nav-links li {
-        display: block;
-        margin-bottom: 10px;
-    }
-
-    .burger-menu {
-        display: flex;
-    }
-}
-
