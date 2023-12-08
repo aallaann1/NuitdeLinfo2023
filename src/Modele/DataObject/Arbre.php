@@ -3,7 +3,6 @@
 namespace App\Modele\DataObject;
 
 
-use App\Modele\Repository\AbstractRepository;
 use App\Modele\Repository\ArbreRepository;
 
 class Arbre extends AbstractDataObject
