@@ -1,9 +1,9 @@
 <div class="landing">
     <div class="search">
         <p class="trouver-une-annonce">
-            <span class="span">Trouver une </span>
-            <span class="text-wrapper-2">godasse</span>
-            <span class="span"> à vos pieds </span>
+            <span class="span">Trouver un </span>
+            <span class="text-wrapper-2">arbre</span>
+            <span class="span"> à votre image</span>
             <span class="span"> !</span>
         </p>
         <div class="search-bar">

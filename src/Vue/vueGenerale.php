@@ -11,7 +11,7 @@
 <div class="landing">
     <header class="header">
         <div class="text-wrapper">
-            <a href="controleurFrontal.php" style="color: white;">Godasse.org</a>
+            <a href="controleurFrontal.php" style="color: white;">Arbre.org</a>
         </div>
 
         <div class="liens">
