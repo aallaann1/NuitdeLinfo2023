@@ -123,6 +123,12 @@ class Arbre extends AbstractDataObject
             "description" => $this->description
         );
     }
+
+    public static function getArbre($idArbre): Arbre
+    {
+        $arbre = (new ArbreRepository())->recupererParClePrimaire($idArbre);
+        return $arbre;
+    }
 }
 
 ?>
