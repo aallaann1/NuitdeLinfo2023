@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Controller\ControleurChaussure;
+use App\Controller\ControleurArbre;
 use App\Lib\ConnexionUtilisateur;
 use App\Lib\MessageFlash;
 
@@ -13,9 +13,9 @@ class ControleurCommande extends ControleurGenerique
         if (!ConnexionUtilisateur::estAdministrateur()) {
             MessageFlash::ajouter('warning', "vous n'avez pas les droit d'accés");
             $url = "?action=afficherListe&controleur=arbre";
-            ControleurChaussure::redirectionVersURL($url);
+            ControleurArbre::redirectionVersURL($url);
         } else {
-            ControleurChaussure::afficherVue('vueGenerale.php', ["pagetitle" => "gestion des commandes", "cheminVueBody" => "gestionCommande.php"]);
+            ControleurArbre::afficherVue('vueGenerale.php', ["pagetitle" => "gestion des commandes", "cheminVueBody" => "gestionCommande.php"]);
         }
     }
 
@@ -23,9 +23,9 @@ class ControleurCommande extends ControleurGenerique
         if (!ConnexionUtilisateur::estConnecte()) {
             MessageFlash::ajouter('warning', "vous n'avez pas les droit d'accés");
             $url = "?action=afficherListe&controleur=arbre";
-            ControleurChaussure::redirectionVersURL($url);
+            ControleurArbre::redirectionVersURL($url);
         } else {
-            ControleurChaussure::afficherVue('vueGenerale.php', ["pagetitle" => "mes commandes", "cheminVueBody" => "commande/mesCommandes.php"]);
+            ControleurArbre::afficherVue('vueGenerale.php', ["pagetitle" => "mes commandes", "cheminVueBody" => "commande/mesCommandes.php"]);
         }
     }
 
