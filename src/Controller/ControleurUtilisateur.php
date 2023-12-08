@@ -102,7 +102,7 @@ class ControleurUtilisateur extends ControleurGenerique
 
 
                 MessageFlash::ajouter('danger', "Utilisateur inscrit");
-                $url = "?action=afficherListe&controleur=chaussure";
+                $url = "?action=afficherListe&controleur=arbre";
                 ControleurUtilisateur::redirectionVersURL($url);
 
             } else {
@@ -166,37 +166,37 @@ class ControleurUtilisateur extends ControleurGenerique
                                 (new UtilisateurRepository())->mettreAJour($ModifUtilisateur);
 
                                 MessageFlash::ajouter('success', "utilisateur mis a jour");
-                                $url = "?action=afficherListe&controleur=chaussure";
+                                $url = "?action=afficherListe&controleur=arbre";
                                 ControleurUtilisateur::redirectionVersURL($url);
 
                             } else {
                                 MessageFlash::ajouter('warning', "Mots de passe distincts");
-                                $url = "?action=afficherListe&controleur=chaussure";
+                                $url = "?action=afficherListe&controleur=arbre";
                                 ControleurUtilisateur::redirectionVersURL($url);
                             }
                         } else {
                             MessageFlash::ajouter('warning', "Ancien mot de passe erroné");
-                            $url = "?action=afficherListe&controleur=chaussure";
+                            $url = "?action=afficherListe&controleur=arbre";
                             ControleurUtilisateur::redirectionVersURL($url);
                         }
                     } else {
                         MessageFlash::ajouter('warning', "La mise à jour n’est possible que pour l’utilisateur connecté");
-                        $url = "?action=afficherListe&controleur=chaussure";
+                        $url = "?action=afficherListe&controleur=arbre";
                         ControleurUtilisateur::redirectionVersURL($url);
                     }
                 } else {
                     MessageFlash::ajouter('warning', "l'utilisateur avec ce login n'existe pas.");
-                    $url = "?action=afficherListe&controleur=chaussure";
+                    $url = "?action=afficherListe&controleur=arbre";
                     ControleurUtilisateur::redirectionVersURL($url);
                 }
             } else {
                 MessageFlash::ajouter('warning', "veuillez completer tous les champs du formulaire.");
-                $url = "?action=afficherListe&controleur=chaussure";
+                $url = "?action=afficherListe&controleur=arbre";
                 ControleurUtilisateur::redirectionVersURL($url);
             }
         } else {
             MessageFlash::ajouter('warning', "email non valide.");
-            $url = "?action=afficherListe&controleur=chaussure";
+            $url = "?action=afficherListe&controleur=arbre";
             ControleurUtilisateur::redirectionVersURL($url);
         }
 
@@ -216,18 +216,18 @@ class ControleurUtilisateur extends ControleurGenerique
                     ConnexionUtilisateur::connecter($login);
 
                 MessageFlash::ajouter('warning', "Utilisateur connecté");
-                $url = "?action=afficherListe&controleur=chaussure";
+                $url = "?action=afficherListe&controleur=arbre";
                     ControleurUtilisateur::redirectionVersURL($url);
 
             } else {
                 MessageFlash::ajouter('warning', "l'utilisateur " . $login . " n'existe pas ou le mot de passe n'est pas correct");
-                $url = "?action=afficherListe&controleur=chaussure";
+                $url = "?action=afficherListe&controleur=arbre";
                 ControleurUtilisateur::redirectionVersURL($url);
             }
 
         } else {
             MessageFlash::ajouter('warning', "login ou mdp non renseigner");
-            $url = "?action=afficherListe&controleur=chaussure";
+            $url = "?action=afficherListe&controleur=arbre";
             ControleurUtilisateur::redirectionVersURL($url);
         }
 
@@ -239,7 +239,7 @@ class ControleurUtilisateur extends ControleurGenerique
         unset($_SESSION['utilisateur']);
         ConnexionUtilisateur::deconnecter();
         MessageFlash::ajouter('info', "Utilisateur déconnecté");
-        $url = "?action=afficherListe&controleur=chaussure";
+        $url = "?action=afficherListe&controleur=arbre";
         ControleurUtilisateur::redirectionVersURL($url);
     }
 
