@@ -110,16 +110,6 @@ abstract class AbstractRepository{
         $colonnes = $this->getNomsColonnes();
         $values = $objet->formatTableau();
 
-        if (isset($values['photo']) && is_string($values['photo'])) {
-            $photoContent = $values['photo'];
-
-            $cheminFichier = '/chemin/vers/votre/repertoire/' . 'nom_du_fichier.png';
-
-            file_put_contents($cheminFichier, $photoContent);
-
-            $values['photo'] = $cheminFichier;
-        }
-
         $sql = "INSERT INTO $table (";
         foreach ($colonnes as $colonne) {
             $sql .= "$colonne, ";
