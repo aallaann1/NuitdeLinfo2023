@@ -35,7 +35,7 @@ class Panier extends AbstractDataObject
     }
 
 
-    public function getArbre(): Chaussure
+    public function getArbre(): Arbre
     {
         return Arbre::getArbre($this->idArbre);
     }
