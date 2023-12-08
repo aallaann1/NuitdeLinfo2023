@@ -29,6 +29,7 @@
 
 
         foreach ($arbres as $arbre) {
+            var_dump($arbre);
 
 
             $nomHtml = htmlspecialchars($arbre->getNomcommun());
