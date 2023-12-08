@@ -105,17 +105,17 @@ class ControleurPanier extends ControleurGenerique
             $arbres = [];
 
             foreach ($paniers as $panier) {
-                $idArbre = $panier->getArbre();
+                $idArbre = $panier->getIdArbre();
 
                 if (!is_null($idArbre)) {
-                    $arbres = $idArbre;
+                    $arrayIdArbre[] = $idArbre;
                 }
             }
 
-            CommandeRepository::validerPanier($arbres, $idUtilisateur);
+            CommandeRepository::validerPanier($arrayIdArbre, $idUtilisateur);
 
-            foreach ($arbres as $arbre) {
-                    $idArbre = $arbre->getArbre();
+            foreach ($paniers as $panier) {
+                    $idArbre = $panier->getIdArbre();
 
                     if (!is_null($idArbre)) {
                         (new PanierRepository())->supprimerPanier($idArbre, $idUtilisateur);

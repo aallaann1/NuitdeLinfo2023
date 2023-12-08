@@ -41,12 +41,12 @@ class CommandeRepository extends AbstractRepository
         ];
     }
 
-    public static function validerPanier($arrayIdChaussure, $login) {
+    public static function validerPanier($arrayIdArbre, $login) {
         $sql = "INSERT INTO commande (idArbre, login, date) VALUES (:idArbre, :login, NOW())";
 
         $pdoStatement = ConnexionBaseDeDonnee::getPdo()->prepare($sql);
 
-        foreach ($arrayIdChaussure as $idArbre) {
+        foreach ($arrayIdArbre as $idArbre) {
             $array = [
                 "login" => $login,
                 "idArbre" => $idArbre
