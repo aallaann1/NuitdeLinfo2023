@@ -31,7 +31,7 @@
                 <tbody>
                 <?php foreach ($arbres as $arbre) : ?>
                     <tr>
-                        <td><img src="<?= $arbre->getImage() ?>" alt="Arbre Image"></td>
+                        <td><img src="<?= $arbre->getImage() ?>" alt="Arbre Image" width=50px height=50px></td>
                         <td><?= $arbre->getNomcommun() ?></td>
                         <td><?= $arbre->getDescription() ?></td>
                         <td>
