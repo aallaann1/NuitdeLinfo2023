@@ -29,11 +29,10 @@
 
 
         foreach ($arbres as $arbre) {
-            var_dump($arbre);
 
 
             $nomHtml = htmlspecialchars($arbre->getNomcommun());
-            $descriptionHtml = htmlspecialchars($arbre->getDescription());
+            $descriptionHtml = $arbre->getDescription();
             $image = $arbre->getImage();
             $link = urldecode("?action=afficherDetail&idChaussure=".$arbre->getIdArbre());
             $lienModifier = urldecode("?action=afficherFormulaireMiseAJour&controleur=chaussure&idChaussure=".$arbre->getIdArbre());
