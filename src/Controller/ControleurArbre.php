@@ -76,7 +76,7 @@ class ControleurArbre extends ControleurGenerique
             ControleurArbre::redirectionVersURL($url);
         } else {
             $arbre = new Arbre(null, $_REQUEST['nomScientifique'], $_REQUEST['nomCommun'], $_REQUEST['image'], $_REQUEST['description']);
-            (new ArbreRepository())->creer($arbre);
+            (new ArbreRepository())->sauvegarder($arbre);
             MessageFlash::ajouter('info', "arbre créé");
             $url = "?action=afficherListe&controleur=arbre";
             ControleurArbre::redirectionVersURL($url);
