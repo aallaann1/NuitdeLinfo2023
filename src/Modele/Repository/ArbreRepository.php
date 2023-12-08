@@ -23,7 +23,7 @@ class ArbreRepository extends AbstractRepository
         return new Arbre(
             $ligne['idArbre'],
             $ligne['nomScientifique'],
-            $ligne['nomcommun'],
+            $ligne['nomCommun'],
             $ligne['image'],
             $ligne['description']
         );
