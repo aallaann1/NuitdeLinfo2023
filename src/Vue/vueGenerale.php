@@ -10,7 +10,7 @@
 <body>
 <div class="landing">
     <header class="header">
-        <div class="text-wrapper">
+        <div class="nav">
             <a href="controleurFrontal.php" style="color: white;">Arbre.org</a>
         </div>
 
@@ -67,7 +67,7 @@
     }
     ?>
 
-<main>
+<main class="container">
     <?php
     /** @var TYPE_NAME $cheminVueBody */
     require __DIR__ .  "/{$cheminVueBody}";
